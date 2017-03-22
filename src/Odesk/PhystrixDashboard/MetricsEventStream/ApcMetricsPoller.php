@@ -99,7 +99,7 @@ class ApcMetricsPoller implements MetricsPollerInterface
             $expressionToExtractCommandKey = '/^' . ApcStateStorage::CACHE_PREFIX . '(.*)_(?:.*)_(?:[0-9]+)$/';
             preg_match($expressionToExtractCommandKey, $counter['key'], $match);
             if (!isset($match[1])) {
-                throw new \RuntimeException('Invalid counter key: ' . $counter['key']);
+                continue;
             }
             $commandKey = $match[1];
             if (!in_array($commandKey, $commandKeys)) {
